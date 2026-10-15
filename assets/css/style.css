@@ -57,7 +57,7 @@ button { font: inherit; }
 .resource-icon { display: block; width: 17px; height: 17px; flex: 0 0 auto; }
 .arxiv-icon { color: #B31B1B; }
 .github-icon { color: #24292F; }
-.hf-icon { width: 18px; height: 18px; }
+.hf-icon { font-size: 17px; line-height: 1; text-align: center; }
 .pending-mark { color: var(--apricot-strong); }
 .pending-note { margin: 5px 0 0; color: var(--muted); font-size: 10px; }
 .abstract-wrap { padding-top: 21px; padding-bottom: 29px; }
