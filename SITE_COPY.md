@@ -26,13 +26,13 @@ As joint audio-video generation models become more capable, they can generate au
 
 ### Why event-centric evaluation?
 
-Modern joint audio-video generation introduces multi-event composition, multi-layer audio mixture, and asymmetric cross-modal relations. Clip-level metrics and predefined relations can miss local inconsistencies or penalize valid off-screen sounds.
+Modern joint audio-video generation introduces multi-event composition, multi-layer audio mixtures, and asymmetric cross-modal relations, challenging existing clip-level and predefined-relation metrics. We propose an event-centric framework that disentangles individual events, distinguishes audio source roles, and cross-validates event-dependent relations across modalities, yielding a coarse-to-fine, three-level consistency metric.
 
 Event-centric audio-video consistency evaluation (Figure 1).
 
-- **S_mac - Global narrative harmony:** Agreement in narrative content, entities, environment, and affective tone.
-- **S_temp - Event-level temporal synchronization:** Event presence and alignment of onset, offset, and duration.
-- **S_attr - Fine-grained attribute alignment:** Attribute compatibility within verified cross-modal relations.
+- **Global Narrative Harmony (S_mac):** Measures agreement in narrative content, entity identity, environment, and affective tone across the entire clip.
+- **Event-level Temporal Synchronization (S_temp):** Evaluates event presence and temporal alignment of onset, offset, and duration under event-dependent cross-modal relations.
+- **Fine-grained Attribute Alignment (S_attr):** Assesses physical, morphological, and causal-response compatibility within temporally verified event relations.
 
 S_AVC = (S_mac + S_temp + S_attr) / 3
 
@@ -40,7 +40,7 @@ S_AVC = (S_mac + S_temp + S_attr) / 3
 
 ### From event-level reasoning to a trainable reward
 
-AVC-Reward follows five stages: audio-only analysis, video-only analysis, audio-to-video verification, video-to-audio verification, and overall judgment.
+AVC-Reward implements the three-level metric through five-stage structured reasoning. Audio-only and video-only analyses extract global descriptions and individual events; bidirectional verification establishes their cross-modal relations and supporting evidence. The final stage computes S_mac from global descriptions, and S_temp and S_attr from verified event relations. The three scores lie in [0, 1], with their arithmetic mean S_AVC serving as the overall reward.
 
 Data construction, reward-model training, and generation-side optimization (Figure 2).
 
@@ -71,13 +71,13 @@ Table 2. Agreement with human judgment on AVC-Benchmark.
 | Ours - AVC-Reward (Ours) | **0.586** | **0.728** | **0.494** | **0.244** |
 | Human - Human Upper Bound | 0.756 | 0.920 | 0.781 | 0.497 |
 
-On AVC-Benchmark (706 samples), AVC-Reward achieves the strongest agreement with human judgments among the evaluated automatic methods, reaching 0.728 on ?-Pairwise and 0.494 on PLCC. Pairwise accuracy rises as the human-score difference increases.
+On AVC-Benchmark (706 samples), AVC-Reward achieves the strongest human alignment among automatic methods (0.728 Δ-Pairwise; 0.494 PLCC). As human-score differences become clearer, its pairwise accuracy improves and approaches the human upper bound, reflecting a judgment pattern more closely aligned with human perception.
 
 ### Generation-Side Optimization
 
 Table 3. Generation-side optimization results: (a) audio-video consistency and (b) text alignment and single-modality quality.
 
-Using S_AVC as the OmniNFT reward improves audio-video consistency across AV-Phys-Bench, VABench, and AVGenBench. Text alignment decreases slightly on some settings, while single-modality quality remains comparable.
+Replacing DeSync with S_AVC as the OmniNFT reward improves audio-video consistency across three benchmark prompt sets: AV-Phys-Bench, VABench-T2AV, and AVGenBench. Consistent improvements on external consistency metrics demonstrate the effectiveness of AVC-Reward as an optimization signal.
 
 ## Case Studies
 

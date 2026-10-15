@@ -56,7 +56,7 @@
           <div class="section-heading">
             <p class="eyebrow">Overview</p>
             <h2>Why event-centric evaluation?</h2>
-            <p>Modern joint audio-video generation introduces multi-event composition, multi-layer audio mixture, and asymmetric cross-modal relations. Clip-level metrics and predefined relations can miss local inconsistencies or penalize valid off-screen sounds.</p>
+            <p>Modern joint audio-video generation introduces multi-event composition, multi-layer audio mixtures, and asymmetric cross-modal relations, challenging existing clip-level and predefined-relation metrics. We propose an event-centric framework that disentangles individual events, distinguishes audio source roles, and cross-validates event-dependent relations across modalities, yielding a coarse-to-fine, three-level consistency metric.</p>
           </div>
           <figure class="pdf-figure figure-one">
             <div class="pdf-frame figure-1">
@@ -67,9 +67,9 @@
             <figcaption>Event-centric audio-video consistency evaluation (Figure 1).</figcaption>
           </figure>
           <div class="metric-grid">
-            <article class="metric-card metric-sage"><p class="metric-symbol"><i>S</i><sub>mac</sub></p><h3>Global narrative harmony</h3><p>Agreement in narrative content, entities, environment, and affective tone.</p></article>
-            <article class="metric-card metric-rose"><p class="metric-symbol"><i>S</i><sub>temp</sub></p><h3>Event-level temporal synchronization</h3><p>Event presence and alignment of onset, offset, and duration.</p></article>
-            <article class="metric-card metric-lavender"><p class="metric-symbol"><i>S</i><sub>attr</sub></p><h3>Fine-grained attribute alignment</h3><p>Attribute compatibility within verified cross-modal relations.</p></article>
+            <article class="metric-card metric-sage"><p class="metric-symbol"><i>S</i><sub>mac</sub></p><h3>Global Narrative Harmony</h3><p>Measures agreement in narrative content, entity identity, environment, and affective tone across the entire clip.</p></article>
+            <article class="metric-card metric-rose"><p class="metric-symbol"><i>S</i><sub>temp</sub></p><h3>Event-level Temporal Synchronization</h3><p>Evaluates event presence and temporal alignment of onset, offset, and duration under event-dependent cross-modal relations.</p></article>
+            <article class="metric-card metric-lavender"><p class="metric-symbol"><i>S</i><sub>attr</sub></p><h3>Fine-grained Attribute Alignment</h3><p>Assesses physical, morphological, and causal-response compatibility within temporally verified event relations.</p></article>
           </div>
           <p class="score-formula"><span class="score-formula-main"><i>S</i><sub>AVC</sub></span><span class="score-formula-equals">=</span><span class="score-formula-terms">(<i>S</i><sub>mac</sub> + <i>S</i><sub>temp</sub> + <i>S</i><sub>attr</sub>) / 3</span></p>
         </div>
@@ -80,7 +80,7 @@
           <div class="section-heading">
             <p class="eyebrow">Method</p>
             <h2>From event-level reasoning to a trainable reward</h2>
-            <p>AVC-Reward follows five stages: audio-only analysis, video-only analysis, audio-to-video verification, video-to-audio verification, and overall judgment.</p>
+            <p>AVC-Reward implements the three-level metric through five-stage structured reasoning. Audio-only and video-only analyses extract global descriptions and individual events; bidirectional verification establishes their cross-modal relations and supporting evidence. The final stage computes <i>S</i><sub>mac</sub> from global descriptions, and <i>S</i><sub>temp</sub> and <i>S</i><sub>attr</sub> from verified event relations. The three scores lie in [0, 1], with their arithmetic mean <i>S</i><sub>AVC</sub> serving as the overall reward.</p>
           </div>
           <figure class="pdf-figure figure-two">
             <div class="pdf-frame figure-2">
@@ -119,7 +119,7 @@
                   <figcaption>Pairwise accuracy across thresholds (Figure 3).</figcaption>
                 </figure>
               </div>
-              <p class="result-summary">On AVC-Benchmark (706 samples), AVC-Reward achieves the strongest agreement with human judgments among the evaluated automatic methods, reaching 0.728 on &Delta;-Pairwise and 0.494 on PLCC. Pairwise accuracy rises as the human-score difference increases.</p>
+              <p class="result-summary">On AVC-Benchmark (706 samples), AVC-Reward achieves the strongest human alignment among automatic methods (0.728 &Delta;-Pairwise; 0.494 PLCC). As human-score differences become clearer, its pairwise accuracy improves and approaches the human upper bound, reflecting a judgment pattern more closely aligned with human perception.</p>
             </section>
 
             <section class="result-subsection generation-results" aria-labelledby="generation-optimization-title">
@@ -132,7 +132,7 @@
                 </div>
                 <figcaption>Table 3. Generation-side optimization results: (a) audio-video consistency and (b) text alignment and single-modality quality.</figcaption>
               </figure>
-              <p class="result-summary">Using <i>S</i><sub>AVC</sub> as the OmniNFT reward improves audio-video consistency across AV-Phys-Bench, VABench, and AVGenBench. Text alignment decreases slightly on some settings, while single-modality quality remains comparable.</p>
+              <p class="result-summary">Replacing DeSync with <i>S</i><sub>AVC</sub> as the OmniNFT reward improves audio-video consistency across three benchmark prompt sets: AV-Phys-Bench, VABench-T2AV, and AVGenBench. Consistent improvements on external consistency metrics demonstrate the effectiveness of AVC-Reward as an optimization signal.</p>
             </section>
           </div>
         </div>
