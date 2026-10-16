@@ -16,4 +16,4 @@ Then open <http://localhost:8000>.
 
 The paper figures and result tables are embedded as vector PDFs in `assets/figures/`. The case-study videos used by the page are kept in their original `ref/` subfolders and loaded on demand by the browser. `SITE_COPY.md` contains the page text in editable form.
 
-The arXiv button is a temporary link to the GitHub repository and is labeled accordingly in the page source and interface.
+The arXiv button links directly to the AVC-Reward paper: https://arxiv.org/abs/2610.22321.

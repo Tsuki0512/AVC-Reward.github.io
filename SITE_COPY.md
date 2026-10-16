@@ -10,13 +10,11 @@ Yuruo Wu¹*, Kaihang Pan¹*, Kai Shen¹*, Jiacheng Li², Shuyuan Tu³, Jisheng D
 
 * Equal contribution. † Corresponding author.
 
-- arXiv* (pending; currently opens the GitHub repository)
+- [arXiv](https://arxiv.org/abs/2610.22321)
 - Code
 - 🤗 AVC-Benchmark
 - 🤗 AVC-Reward
 - 🤗 LTX-2 LoRA
-
-* arXiv link pending; currently opens the GitHub repository.
 
 ## Abstract
 

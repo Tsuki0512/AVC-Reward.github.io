@@ -58,8 +58,6 @@ button { font: inherit; }
 .arxiv-icon { color: #B31B1B; }
 .github-icon { color: #24292F; }
 .hf-icon { font-size: 17px; line-height: 1; text-align: center; }
-.pending-mark { color: var(--apricot-strong); }
-.pending-note { margin: 5px 0 0; color: var(--muted); font-size: 10px; }
 .abstract-wrap { padding-top: 21px; padding-bottom: 29px; }
 .abstract { max-width: 910px; margin: 0 auto; padding-top: 16px; border-top: 1px solid rgba(154,90,59,.18); text-align: left; }
 .abstract h2 { margin: 0 0 6px; color: var(--ink); font-size: 17px; font-weight: 680; letter-spacing: -.01em; }
